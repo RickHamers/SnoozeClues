@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {delay} from 'rxjs/operators';
 
 interface HoursOfSleep {
   value: number;
@@ -56,7 +58,7 @@ export class QuestionsComponent implements OnInit {
   isLoading = false;
   questionForm: FormGroup;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
@@ -68,11 +70,14 @@ export class QuestionsComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  onSubmit() {
+   onSubmit() {
     this.isLoading = true;
+    delay(2500);
     const question1 = this.questionForm.value.question1;
     const question2 = this.questionForm.value.question2;
     const question3 = this.questionForm.value.question3;
     const question4 = this.questionForm.value.question4;
+
+    this.router.navigate(['/result']);
   }
 }

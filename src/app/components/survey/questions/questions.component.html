@@ -13,10 +13,10 @@
   <!---------------------------------------------------- Main ---------------------------------------------------->
   <form [formGroup]="questionForm" class="form-question" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label>How many hours of sleep do you get on average per night?</label>
+      <label> <h3>How many hours of sleep do you get on average per night?</h3></label>
       <mat-form-field appearance="fill">
         <mat-label>Hours of sleep</mat-label>
-        <mat-select>
+        <mat-select required>
           <mat-option *ngFor="let HoursOfSleep of HoursAsleep" [value]="HoursOfSleep.value">
             {{HoursOfSleep.viewValue}}
           </mat-option>
@@ -25,11 +25,11 @@
     </div>
 
     <div class="form-group">
-      <label>How tired do you feel during the day?</label>
+      <label><h3>How tired do you feel during the day?</h3></label>
 
       <mat-form-field appearance="fill">
         <mat-label>Tiredness</mat-label>
-        <mat-select>
+        <mat-select required>
           <mat-option *ngFor="let TiredLevel of Tired" [value]="TiredLevel.value">
             {{TiredLevel.viewValue}}
           </mat-option>
@@ -38,23 +38,23 @@
 
     </div>
     <div class="form-group">
-      <label>Do you use your phone within 30 minutes of going to bed?</label>
+      <label><h3>Do you use your phone within 30 minutes of going to bed?</h3></label>
     </div>
-    <mat-radio-group aria-label="Select an option">
+    <mat-radio-group required aria-label="Select an option">
       <mat-radio-button value="1">Yes</mat-radio-button>
       <mat-radio-button value="2">No</mat-radio-button>
     </mat-radio-group>
     <div class="form-group">
-      <label>Do you sleep with your phone within arms reach?</label>
+      <label><h3>Do you sleep with your phone within arms reach?</h3></label>
     </div>
-    <mat-radio-group aria-label="Select an option">
+    <mat-radio-group required aria-label="Select an option">
       <mat-radio-button value="1">Yes</mat-radio-button>
       <mat-radio-button value="2">No</mat-radio-button>
     </mat-radio-group>
     <div class="form-group">
       <button id="submit-button" name="submit-button" type="submit"
-              class="btn btn-primary">
-        <!-- span *ngIf="isLoading" class="spinner-grow spinner-grow-sm"></span> -->
+               class="btn btn-primary"> <!-- [disabled]="!questionForm.valid" -->
+        <span *ngIf="isLoading" class="spinner-grow spinner-grow-sm"></span>
         Submit
       </button>
     </div>

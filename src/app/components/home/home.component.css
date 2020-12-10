@@ -217,6 +217,7 @@ footer {
   align-items: center;
   line-height: 20px;
   position: fixed;
+  background: #fafafa;
   bottom: 0;
 }
 

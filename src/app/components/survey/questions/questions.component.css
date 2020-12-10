@@ -20,6 +20,15 @@ p {
   margin: 0;
 }
 
+.mat-radio-button ~ .mat-radio-button {
+  margin: 8px;
+}
+
+.form-question {
+  max-width: 300px;
+  position: relative;
+}
+
 .spacer {
   flex: 1;
 }
@@ -216,6 +225,7 @@ footer {
   display: flex;
   align-items: center;
   line-height: 20px;
+  background: #fafafa;
   position: fixed;
   bottom: 0;
 }
@@ -288,4 +298,5 @@ svg#clouds {
     display: none;
     visibility: hidden;
   }
+
 }

@@ -12,7 +12,33 @@
 <div class="content" role="main">
 
   <!---------------------------------------------------- Main ---------------------------------------------------->
-<p>question placeholder</p>
+  <form [formGroup]="questionForm" class="form-question" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Question 1:</label>
+      <input id="question1-input" name="question1-input" title="question1" type="text" class="form-control"
+             formControlName="question1" required/>
+    </div>
+    <div class="form-group">
+      <label>Question 2:</label>
+      <input id="question2-input" name="question2-input" title="question2" type="text" class="form-control"
+             formControlName="question2" required/>
+    </div>
+    <div class="form-group">
+      <label>Question 3:</label>
+      <input id="question3-input" name="question3-input" title="question3" type="text" class="form-control"
+             formControlName="question3" required/>
+    </div>
+    <div class="form-group">
+      <label>Question 4:</label>
+      <input id="question4-input" name="question4-input" title="question4" type="text" class="form-control"
+             formControlName="question4" required/>
+    </div>
+    <button id="submit-button" name="submit-button" type="submit"
+            class="btn btn-primary">
+      <!-- span *ngIf="isLoading" class="spinner-grow spinner-grow-sm"></span> -->
+      Submit
+    </button>
+  </form>
 
   <!---------------------------------------------------- Footer ---------------------------------------------------->
   <footer>

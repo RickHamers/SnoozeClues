@@ -288,4 +288,10 @@ svg#clouds {
     display: none;
     visibility: hidden;
   }
+
+  .form-question {
+    max-width: 300px;
+    position: relative;
+    left: 41%;
+  }
 }

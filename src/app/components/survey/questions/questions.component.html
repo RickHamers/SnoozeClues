@@ -1,9 +1,8 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <img
-    width="40"
-    alt="Angular Logo"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+    width="80"
+    src="../../../assets/img/cloud_icon.png"
   />
   <span>SnoozeClues App</span>
   <div class="spacer"></div>
@@ -14,30 +13,51 @@
   <!---------------------------------------------------- Main ---------------------------------------------------->
   <form [formGroup]="questionForm" class="form-question" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label>Question 1:</label>
-      <input id="question1-input" name="question1-input" title="question1" type="text" class="form-control"
-             formControlName="question1" required/>
+      <label>How many hours of sleep do you get on average per night?</label>
+      <mat-form-field appearance="fill">
+        <mat-label>Hours of sleep</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let HoursOfSleep of HoursAsleep" [value]="HoursOfSleep.value">
+            {{HoursOfSleep.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label>How tired do you feel during the day?</label>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Tiredness</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let TiredLevel of Tired" [value]="TiredLevel.value">
+            {{TiredLevel.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
     </div>
     <div class="form-group">
-      <label>Question 2:</label>
-      <input id="question2-input" name="question2-input" title="question2" type="text" class="form-control"
-             formControlName="question2" required/>
+      <label>Do you use your phone within 30 minutes of going to bed?</label>
     </div>
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button value="1">Yes</mat-radio-button>
+      <mat-radio-button value="2">No</mat-radio-button>
+    </mat-radio-group>
     <div class="form-group">
-      <label>Question 3:</label>
-      <input id="question3-input" name="question3-input" title="question3" type="text" class="form-control"
-             formControlName="question3" required/>
+      <label>Do you sleep with your phone within arms reach?</label>
     </div>
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button value="1">Yes</mat-radio-button>
+      <mat-radio-button value="2">No</mat-radio-button>
+    </mat-radio-group>
     <div class="form-group">
-      <label>Question 4:</label>
-      <input id="question4-input" name="question4-input" title="question4" type="text" class="form-control"
-             formControlName="question4" required/>
+      <button id="submit-button" name="submit-button" type="submit"
+              class="btn btn-primary">
+        <!-- span *ngIf="isLoading" class="spinner-grow spinner-grow-sm"></span> -->
+        Submit
+      </button>
     </div>
-    <button id="submit-button" name="submit-button" type="submit"
-            class="btn btn-primary">
-      <!-- span *ngIf="isLoading" class="spinner-grow spinner-grow-sm"></span> -->
-      Submit
-    </button>
   </form>
 
   <!---------------------------------------------------- Footer ---------------------------------------------------->

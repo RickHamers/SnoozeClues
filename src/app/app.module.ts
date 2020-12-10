@@ -9,6 +9,10 @@ import { InfoComponent } from './components/survey/info/info.component';
 import { HomeComponent } from './components/home/home.component';
 import { QuestionsComponent } from './components/survey/questions/questions.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     // HttpModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

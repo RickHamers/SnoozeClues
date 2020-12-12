@@ -16,7 +16,7 @@
       <label> <h3>How many hours of sleep do you get on average per night?</h3></label>
       <mat-form-field appearance="fill">
         <mat-label>Hours of sleep</mat-label>
-        <mat-select required>
+        <mat-select required formControlName="question1">
           <mat-option *ngFor="let HoursOfSleep of HoursAsleep" [value]="HoursOfSleep.value">
             {{HoursOfSleep.viewValue}}
           </mat-option>
@@ -29,7 +29,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Tiredness</mat-label>
-        <mat-select required>
+        <mat-select required formControlName="question2">
           <mat-option *ngFor="let TiredLevel of Tired" [value]="TiredLevel.value">
             {{TiredLevel.viewValue}}
           </mat-option>
@@ -40,19 +40,19 @@
     <div class="form-group">
       <label><h3>Do you use your phone within 30 minutes of going to bed?</h3></label>
     </div>
-    <mat-radio-group required aria-label="Select an option">
-      <mat-radio-button value="1">Yes</mat-radio-button>
-      <mat-radio-button value="2">No</mat-radio-button>
+    <mat-radio-group required aria-label="Select an option" formControlName="question3">
+      <mat-radio-button value=1>Yes</mat-radio-button>
+      <mat-radio-button value=0>No</mat-radio-button>
     </mat-radio-group>
     <div class="form-group">
       <label><h3>Do you sleep with your phone within arms reach?</h3></label>
     </div>
-    <mat-radio-group required aria-label="Select an option">
-      <mat-radio-button value="1">Yes</mat-radio-button>
-      <mat-radio-button value="2">No</mat-radio-button>
+    <mat-radio-group required aria-label="Select an option" formControlName="question4">
+      <mat-radio-button value=1>Yes</mat-radio-button>
+      <mat-radio-button value=0>No</mat-radio-button>
     </mat-radio-group>
     <div class="form-group">
-      <button id="submit-button" name="submit-button" type="submit"
+      <button id="submit-button" name="submit-button" type="submit" [disabled]="!questionForm.valid"
                class="btn btn-primary"> <!-- [disabled]="!questionForm.valid" -->
         <span *ngIf="isLoading" class="spinner-grow spinner-grow-sm"></span>
         Submit

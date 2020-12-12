@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {StorageService} from '../../services/storage.service';
+import {Questionaire} from '../../models/question';
 
 @Component({
   selector: 'app-result',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultComponent implements OnInit {
 
-  constructor() { }
+  questionaire: Questionaire;
+  result: any;
+
+  constructor(private storageService: StorageService) { }
 
   ngOnInit(): void {
+    this.questionaire = this.storageService.getQuestionaire();
+    this.result = this.storageService.getResult();
   }
 
 }

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {delay} from 'rxjs/operators';
+import {PredictionService} from '../../../services/prediction.service';
+import {StorageService} from '../../../services/storage.service';
 
 interface HoursOfSleep {
   value: number;
@@ -20,32 +22,7 @@ interface TiredLevel {
 })
 export class QuestionsComponent implements OnInit {
 
-  HoursAsleep: HoursOfSleep[] = [
-    {value: 1 , viewValue: '1'},
-    {value: 2 , viewValue: '2'},
-    {value: 3 , viewValue: '3'},
-    {value: 4 , viewValue: '4'},
-    {value: 5 , viewValue: '5'},
-    {value: 6 , viewValue: '6'},
-    {value: 7 , viewValue: '7'},
-    {value: 8 , viewValue: '8'},
-    {value: 9 , viewValue: '9'},
-    {value: 10 , viewValue: '10'},
-    {value: 11 , viewValue: '11'},
-    {value: 12 , viewValue: '12'},
-    {value: 13 , viewValue: '13'},
-    {value: 14 , viewValue: '14'},
-    {value: 15 , viewValue: '15'},
-    {value: 16 , viewValue: '16'},
-    {value: 17 , viewValue: '17'},
-    {value: 18 , viewValue: '18'},
-    {value: 19 , viewValue: '19'},
-    {value: 20 , viewValue: '20'},
-    {value: 21 , viewValue: '21'},
-    {value: 22 , viewValue: '22'},
-    {value: 23 , viewValue: '23'},
-    {value: 24 , viewValue: '24'}
-  ];
+  HoursAsleep: HoursOfSleep[] = [];
 
   Tired: TiredLevel[] = [
     {value: 1 , viewValue: 'Not tired'},
@@ -58,7 +35,10 @@ export class QuestionsComponent implements OnInit {
   isLoading = false;
   questionForm: FormGroup;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private predictionService: PredictionService, private storageService: StorageService) {
+    for (let i = 1; i <= 24; i++) {
+      this.HoursAsleep.push({ value: i, viewValue: `${i}`});
+    }
   }
 
   ngOnInit(): void {
@@ -71,13 +51,23 @@ export class QuestionsComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
    onSubmit() {
-    this.isLoading = true;
-    delay(2500);
+    // this.isLoading = true;
+    // delay(2500);
     const question1 = this.questionForm.value.question1;
     const question2 = this.questionForm.value.question2;
     const question3 = this.questionForm.value.question3;
     const question4 = this.questionForm.value.question4;
 
-    this.router.navigate(['/result']);
+    this.predictionService.getPrediction(question1, question2, question3, question4)
+      .subscribe((data) => {
+        console.log(data);
+        this.storageService.setData(data, {
+          hours: question1,
+          tired: question2,
+          phoneUsed: question3,
+          phoneReach: question4
+        });
+        this.router.navigate(['/result']);
+      });
   }
 }

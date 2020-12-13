@@ -11,6 +11,7 @@
 <div class="content" role="main">
 
   <!---------------------------------------------------- Main ---------------------------------------------------->
+  <h1><b>Questions</b></h1>
   <form [formGroup]="questionForm" class="form-question" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label> <h3>How many hours of sleep do you get on average per night?</h3></label>
@@ -53,7 +54,7 @@
     </mat-radio-group>
     <div class="form-group">
       <button id="submit-button" name="submit-button" type="submit" [disabled]="!questionForm.valid"
-               class="btn btn-primary"> <!-- [disabled]="!questionForm.valid" -->
+               class="btn btn-primary">
         <span *ngIf="isLoading" class="spinner-grow spinner-grow-sm"></span>
         Submit
       </button>

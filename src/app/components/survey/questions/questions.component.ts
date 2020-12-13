@@ -57,9 +57,10 @@ export class QuestionsComponent implements OnInit {
     const question2 = this.questionForm.value.question2;
     const question3 = this.questionForm.value.question3;
     const question4 = this.questionForm.value.question4;
-
+    this.isLoading = true;
     this.predictionService.getPrediction(question1, question2, question3, question4)
       .subscribe((data) => {
+
         console.log(data);
         this.storageService.setData(data, {
           hours: question1,
@@ -67,6 +68,7 @@ export class QuestionsComponent implements OnInit {
           phoneUsed: question3,
           phoneReach: question4
         });
+        this.isLoading = false;
         this.router.navigate(['/result']);
       });
   }

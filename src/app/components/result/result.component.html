@@ -11,13 +11,153 @@
 <div class="content" role="main">
 
   <!---------------------------------------------------- Main ---------------------------------------------------->
-  <h1>The results are in!</h1>
+  <!---------------------------------------------------- Result ---------------------------------------------------->
+  <h1><b>The results are in!</b></h1>
+  <mat-card *ngIf="result == 1">
+    <mat-card-title><small><b>You are probably getting enough sleep!</b></small></mat-card-title>
+    <mat-card-content>However, there might still be things you can improve!</mat-card-content>
+  </mat-card>
 
-  <p>{{result}}</p>
+  <mat-card *ngIf="result == 0">
+    <mat-card-title><small><b>You might not be getting enough sleep.</b></small></mat-card-title>
+    <mat-card-content>Let's see what you can do to improve your sleep!</mat-card-content>
+  </mat-card>
 
-  <p>Click on the button below to restart the process:</p>
+  <!---------------------------------------------------- Hours of sleep ---------------------------------------------------->
+  <mat-card *ngIf="questionaire.hours >= 7">
+    <mat-card-subtitle>You are getting the recommended amount of hours of sleep!</mat-card-subtitle>
+    <mat-card-content>
+      You answered that you sleep more than 7 hours on average, which is good! The recommended hours of sleep for the
+      average person is between 7 and 9 hours of sleep.
 
-  <div class="card-container">
+      <br>
+      <br>
+      <b>Keep it up, you are doing well!</b>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="questionaire.hours <= 6">
+    <mat-card-subtitle>You are getting less than the recommended hours of sleep.</mat-card-subtitle>
+    <mat-card-content>
+      You answered that you sleep 6 hours or less on average, which isn't quite enough! The recommended hours of sleep for the
+      average person is between 7 and 9 hours of sleep.
+      <br>
+      <br>
+      Try to fall asleep and wake up at the same hours of the day and night. Keeping a consistent schedule will help regulate
+      your sleep/wake cycle, making it easier for your body to respond accordingly to the hours of the day.
+
+      <br>
+      <br>
+      <b>It is recommended to keep a consistent sleep/wake schedule, this will improve the amount of hours of sleep!</b>
+    </mat-card-content>
+  </mat-card>
+
+  <!---------------------------------------------------- Tiredness ---------------------------------------------------->
+  <mat-card *ngIf="questionaire.tired <= 3">
+    <mat-card-subtitle>You feel energized and alert during the day!</mat-card-subtitle>
+    <mat-card-content>
+      You answered that you don't feel very tired during the day, at least not more than average. This is a good sign,
+      because it means you are going to bed and waking up at the correct moments with regards to your REM-sleep cycles.
+      <br>
+      <br>
+      If you want to make sure you can actively keep this up, you might be interested in using a tool like <a
+      href="sleepyti.me">sleepytime</a>, which will help you with keeping a healthy sleep/wake schedule.
+      <br>
+      <br>
+      <b>Keep it up, you are doing well!</b>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="questionaire.tired > 3">
+    <mat-card-subtitle>You feel tired and groggy during the day.</mat-card-subtitle>
+    <mat-card-content>
+      You answered that you feel above average levels of tiredness during the day. This might be a sign that you are
+      going to bed and waking up at times that don't work well with the amount of REM-sleep cycles you are getting.
+      <br>
+      <br>
+      You go through several sleep cycles during the night. If you wake up in the middle of one of these sleep cycles,
+      you will wake up feeling very groggy and sleeping, almost as if you didn't sleep at all. A tool like
+      <a href="https://sleepyti.me/" target="_blank">sleepytime</a> can help you choose better times to go to bed or wake up, which will
+      make sure you wake before or after a complete cycle. This will make you feel much more energized and ready
+      to start the day!
+      <br>
+      <br>
+      <b>It is recommended to look into the times you wake up and go to bed. Try using a tool like
+        <a href="https://sleepyti.me/" target="_blank">sleepytime</a>, it will help you improve!</b>
+    </mat-card-content>
+  </mat-card>
+
+  <!---------------------------------------------------- PhoneUsed ---------------------------------------------------->
+  <mat-card *ngIf="questionaire.phoneUsed == 1">
+    <mat-card-subtitle>You are using your phone before within 30 minutes of going to bed.</mat-card-subtitle>
+    <mat-card-content>
+      You answered that you use your phone within 30 minutes of going to bed. The screen on your cell phone emits
+      blue light, which restrains the production of melatonin, the hormone that controls your sleep-wake cycle. This
+      makes it more difficult to fall asleep and wake up the next day.
+      <br>
+      <br>
+      Furthermore, using your phone will increase your alertness, because your brain is processing new information.
+      Even if you are not viewing upsetting content, you are keeping your mind engaged and are tricking it into thinking
+      it needs to stay awake.
+      <br>
+      <br>
+      <b>Therefore, it is recommended that you stop using your phone before bed. It will help you sleep!</b>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="questionaire.phoneUsed == 0">
+    <mat-card-subtitle>You are doing well by not using your phone before bed!</mat-card-subtitle>
+    <mat-card-content>
+      If you find yourself craving something to do before bed, try and grab a book to read or something similar.
+      This will make sure you can keep up your good habits!
+
+      <br>
+      <br>
+      <b>Keep it up, you are doing well!</b>
+    </mat-card-content>
+  </mat-card>
+
+  <!---------------------------------------------------- PhoneReach ---------------------------------------------------->
+  <mat-card *ngIf="questionaire.phoneReach == 1">
+    <mat-card-subtitle>Your phone is within arm's reach when you are in bed</mat-card-subtitle>
+    <mat-card-content>
+      Having your phone within arm's reach when you are in bed will make it more difficult for you to ignore it. Using
+      your phone will prevent you from getting a good night's rest, because the flow of new information and the blue light
+      emitted by your phone's screen will keep you awake during the night.
+      <br>
+      <br>
+      It is recommended to put your phone somewhere you can't reach during the night. If you are afraid to miss an important
+      call, change the settings of your phone to only ring when someone important calls. At that point you can keep your
+      phone in the same room, but it should still out of reach when you are in bed. This will help you fall asleep much more quickly!
+
+      <br>
+      <br>
+      <b>It is recommended that you put your phone out of reach when you're in bed, so as to not entice you to use it before trying to sleep.</b>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="questionaire.phoneReach == 0">
+    <mat-card-subtitle>You are doing well by having your phone out of the way when you're in bed!</mat-card-subtitle>
+    <mat-card-content>
+      Having your phone within reach whilst in bed will entice you to use it, which in turn will keep you from falling asleep.
+      Therefore it is very good that you already made sure it is out of reach when you're in bed!
+      <br>
+      <br>
+      If you ever find it difficult to let go of your phone for the night, or if you are afraid to miss a call, you can
+      change the settings of the phone to ring only when someone you specified calls. At that point you can safely put
+      it away, and perhaps distract yourself by grabbing a book to read before bed.
+
+      <br>
+      <br>
+      <b>You are doing well, keep it up!</b>
+    </mat-card-content>
+  </mat-card>
+
+  <!---------------------------------------------------- Bottom ---------------------------------------------------->
+
+  <p>Click on the button below restart the process. <b>NOTE: this will delete your data!</b></p>
+
+  <div class="card-container" style="margin-bottom: 100px;">
     <a routerLink="" class="card" rel="noopener">
       <span>Back to the homepage</span>
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
